@@ -1,4 +1,4 @@
 [run]
-include = edc_rx_refill/*
-omit = edc_rx_refill/tests/*,edc_rx_refill/migrations/*
+include = edc_rx/*
+omit = edc_rx/tests/*,edc_rx/migrations/*
 branch = 1

@@ -6,7 +6,7 @@ from edc_crf.admin import crf_status_fieldset_tuple
 
 class DrugRefillAdminMixin:
     form = None
-    inlines = None
+    inlines = []
 
     additional_instructions = format_html(
         '<span style="color:orange">Note: Medications CRF must be completed first.</span>'
