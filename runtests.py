@@ -14,7 +14,6 @@ project_settings = DefaultTestSettings(
     APP_NAME=app_name,
     ETC_DIR=os.path.join(base_dir, app_name, "tests", "etc"),
     SUBJECT_VISIT_MODEL="edc_rx.subjectvisit",
-    LIST_MODEL_APP_LABEL=app_name,
     SUBJECT_VISIT_MISSED_MODEL="edc_appointment.subjectvisitmissed",
     INSTALLED_APPS=[
         "django.contrib.admin",
