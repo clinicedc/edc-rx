@@ -1,23 +1,20 @@
 #!/usr/bin/env python
 import logging
 import os
-import sys
 from os.path import abspath, dirname
 
-import django
-from django.conf import settings
-from django.test.runner import DiscoverRunner
-from edc_test_utils import DefaultTestSettings
+from edc_test_utils import DefaultTestSettings, func_main
 
 app_name = "edc_rx"
 base_dir = dirname(abspath(__file__))
 
-DEFAULT_SETTINGS = DefaultTestSettings(
+project_settings = DefaultTestSettings(
     calling_file=__file__,
     BASE_DIR=base_dir,
     APP_NAME=app_name,
     ETC_DIR=os.path.join(base_dir, app_name, "tests", "etc"),
     SUBJECT_VISIT_MODEL="edc_rx.subjectvisit",
+    LIST_MODEL_APP_LABEL=app_name,
     SUBJECT_VISIT_MISSED_MODEL="edc_appointment.subjectvisitmissed",
     INSTALLED_APPS=[
         "django.contrib.admin",
@@ -38,11 +35,7 @@ DEFAULT_SETTINGS = DefaultTestSettings(
 
 
 def main():
-    if not settings.configured:
-        settings.configure(**DEFAULT_SETTINGS)
-    django.setup()
-    failures = DiscoverRunner(failfast=True).run_tests([f"{app_name}.tests"])
-    sys.exit(failures)
+    func_main(project_settings, f"{app_name}.tests")
 
 
 if __name__ == "__main__":
